@@ -1,0 +1,81 @@
+name: Workflow
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+jobs:
+  build1:
+  	name: "Test1"
+  	runs-on: ubuntu-latest
+    env: 
+    	FOLDER: test1 
+    	VALUE: 442
+      USER_SFTP: ${{ secrets.USER_SFTP }}
+      PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: before_install
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install unzip wget dos2unix -y
+          sudo apt-get install build-essential libssh2-1-dev openssl libcurl3 -y
+          dos2unix curl_install.sh
+          chmod +x curl_install.sh
+          dos2unix deploy.sh
+          chmod +x deploy.sh
+          dos2unix run.sh
+          chmod +x run.sh
+        if: success()
+      - name: install
+        run: sudo apt-get -y install build-essential
+        if: success()
+      - name: before_script
+        shell: bash run.sh
+        if: success()
+      - name: script
+        shell: bash curl_install.sh
+        if: success()
+      - name: after_success
+        shell: bash deploy.sh
+  build2:
+   	name: "Test2"
+   	runs-on: ubuntu-latest
+    env: 
+    	FOLDER: test2 
+    	VALUE: 443
+      USER_SFTP: ${{ secrets.USER_SFTP }}
+      PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
+    steps:
+      - uses: actions/checkout@v2
+    	- name: before_install
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install unzip wget dos2unix -y
+          sudo apt-get install build-essential libssh2-1-dev openssl libcurl3 -y
+          dos2unix curl_install.sh
+          chmod +x curl_install.sh
+          dos2unix deploy.sh
+          chmod +x deploy.sh
+          dos2unix run.sh
+          chmod +x run.sh
+        if: success()
+      - name: install
+        run: sudo apt-get -y install build-essential
+        if: success()
+      - name: before_script
+        shell: bash run.sh
+        if: success()
+      - name: script
+        shell: bash curl_install.sh
+        if: success()
+      - name: after_success
+        shell: bash deploy.sh
