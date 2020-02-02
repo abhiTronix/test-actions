@@ -57,7 +57,7 @@ jobs:
       PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
     steps:
       - uses: actions/checkout@v2
-    	- name: before_install
+      - name: before_install
         run: |
           sudo apt-get update -q
           sudo apt-get install unzip wget dos2unix -y
