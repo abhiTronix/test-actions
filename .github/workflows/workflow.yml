@@ -12,13 +12,14 @@ on:
       - master
     paths-ignore:
       - '**.md'
+
 jobs:
   build1:
-  	name: Test1
-  	runs-on: ubuntu-latest
+    name: Test1
+    runs-on: ubuntu-latest
     env: 
-    	FOLDER: test1 
-    	VALUE: 442
+      FOLDER: test1 
+      VALUE: 442
       USER_SFTP: ${{ secrets.USER_SFTP }}
       PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
     steps:
@@ -47,11 +48,11 @@ jobs:
       - name: after_success
         shell: bash deploy.sh
   build2:
-   	name: Test2
-   	runs-on: ubuntu-latest
-    env: 
-    	FOLDER: test2 
-    	VALUE: 443
+    name: Test2
+    runs-on: ubuntu-latest
+    env:
+      FOLDER: test2 
+      VALUE: 443
       USER_SFTP: ${{ secrets.USER_SFTP }}
       PASSWORD_SFTP: ${{ secrets.PASSWORD_SFTP }}
     steps:
