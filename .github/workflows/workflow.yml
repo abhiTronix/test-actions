@@ -50,7 +50,7 @@ jobs:
       - name: after_success
         run: bash deploy.sh
         shell: bash
-        if: ${{ github.event_name }} != "pull_request"
+        if: ${{ GITHUB_EVENT_NAME }} != "pull_request"
   build2:
     name: Test2
     runs-on: ubuntu-latest
@@ -87,4 +87,4 @@ jobs:
       - name: after_success
         run: bash deploy.sh
         shell: bash
-        if: ${{ github.event_name }} != "pull_request"
+        if: ${{ GITHUB_EVENT_NAME }} != "pull_request"
