@@ -40,15 +40,15 @@ jobs:
         run: sudo apt-get -y install build-essential
         if: success()
       - name: before_script
-        run: run.sh
+        run: bash run.sh
         shell: bash
         if: success()
       - name: script
-        run: curl_install.sh
+        run: bash curl_install.sh
         shell: bash
         if: success()
       - name: after_success
-        run: deploy.sh
+        run: bash deploy.sh
         shell: bash
   build2:
     name: Test2
@@ -76,13 +76,13 @@ jobs:
         run: sudo apt-get -y install build-essential
         if: success()
       - name: before_script
-        run: run.sh
+        run: bash run.sh
         shell: bash
         if: success()
       - name: script
-        run: curl_install.sh
+        run: bash curl_install.sh
         shell: bash
         if: success()
       - name: after_success
-        run: deploy.sh
+        run: bash deploy.sh
         shell: bash
