@@ -14,7 +14,7 @@ on:
       - '**.md'
 jobs:
   build1:
-  	name: "Test1"
+  	name: Test1
   	runs-on: ubuntu-latest
     env: 
     	FOLDER: test1 
@@ -47,7 +47,7 @@ jobs:
       - name: after_success
         shell: bash deploy.sh
   build2:
-   	name: "Test2"
+   	name: Test2
    	runs-on: ubuntu-latest
     env: 
     	FOLDER: test2 
